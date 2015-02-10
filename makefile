@@ -21,11 +21,5 @@ e100test: test_routines.o
 setclock: clock_configuration.o
 	g++ -L /usr/lib -l uhd -o clock_configuration clock_configuration.cpp
 
-rxtest: receiver_test.o uhd_utilities.o task_sampling.o task_demod.o
-	g++ -g -L /usr/lib -l uhd -lpthread -o rxtest  receiver_test.cpp uhd_utilities.cpp task_sampling.cpp task_demod.cpp
-	
-serialtest: serial_port_test.o 	
-	g++ -g -L /usr/lib -l uhd -o serial_port_test serial_port_test.cpp
-	
 clean:
 	rm *.o

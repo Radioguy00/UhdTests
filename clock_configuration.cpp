@@ -1,3 +1,8 @@
+/*-------------------------------------------------------------------
+ * @file clock_configuration.cpp
+ *
+ * Utility to test the different master clock settings of the hardware
+ * -----------------------------------------------------------------*/
 
 #define DEFINE_GLOBALS
 
@@ -9,18 +14,12 @@
 #include <csignal>
 #include <fstream>
 #include <cmath>
-#include "uhd_utilities.h"
-#include <pthread.h>
-#include "task_sampling.h"
 
 bool stop_signal_called = false;
 
 
 void sig_int_handler(int) {stop_signal_called = true;}
 
-
-#define MAIN_ERROR_SAMPLING_TASK_NOT_CREATED 1 ;
-#define MAIN_ERROR_DEMOD_TASK_NOT_CREATED 2;
 
 
 int main(int argc, char ** argv)
@@ -45,8 +44,7 @@ int main(int argc, char ** argv)
 	std::cout << std::endl << "-----> Creating device" << std::endl;
 	radio::multi_usrp::sptr usrp = radio::multi_usrp::make(args);
 	
-	// Configure the board as desired
-	// Master clock
+	// Master clock configuration
 	
 	double desired_clock_hz = 19660800;
 	double clock_rate_before = usrp->get_master_clock_rate();
@@ -56,22 +54,31 @@ int main(int argc, char ** argv)
 	std::cout << "Clock before modification: " << clock_rate_before << '\n';
 	std::cout << "Clock after modification: " << clock_rate_after << '\n';
 	
+	// Sample rate configuration
 	
-	
-	// Sample rate
 	usrp->set_rx_rate(38400);
 	std::cout << "Rx Sample rate: "  << usrp->get_rx_rate() << std::endl;
-	// Initial receive frequency
-	tune_request_t tune_request(135e6, 55e3);
-	tune_result_t tune_result = usrp->set_rx_freq(tune_request);
-	std::cout << "Target RF frequency: " << tune_result.target_rf_freq << std::endl;
-	std::cout << "Actual RF frequency: " << tune_result.actual_rf_freq << std::endl;
-	std::cout << "Target DSP frequency: " << tune_result.target_dsp_freq << std::endl;
-	std::cout << "Actual DSP frequency: " << tune_result.actual_dsp_freq << std::endl;
-	// Display the board configuration
-	//get_rx_parameters(usrp, 0, std::cout);	
 
+	// Receive frequency configuration
+	{	
+	tune_request_t tune_request(137.5e6, 55e3);
+	tune_result_t tune_result = usrp->set_rx_freq(tune_request);
+	std::cout << "Target RX RF frequency: " << tune_result.target_rf_freq << std::endl;
+	std::cout << "Actual RX RF frequency: " << tune_result.actual_rf_freq << std::endl;
+	std::cout << "Target RX DSP frequency: " << tune_result.target_dsp_freq << std::endl;
+	std::cout << "Actual RX DSP frequency: " << tune_result.actual_dsp_freq << std::endl;
+	}
 	
+	// Transmit frequency configuration
+	{
+	tune_request_t tune_request(149.05e6, 55e3);
+	tune_result_t tune_result = usrp->set_tx_freq(tune_request);
+	std::cout << "Target TX RF frequency: " << tune_result.target_rf_freq << std::endl;
+	std::cout << "Actual TX RF frequency: " << tune_result.actual_rf_freq << std::endl;
+	std::cout << "Target TX DSP frequency: " << tune_result.target_dsp_freq << std::endl;
+	std::cout << "Actual TX DSP frequency: " << tune_result.actual_dsp_freq << std::endl;
+	}
+
 	return 0;
 	
 }

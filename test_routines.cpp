@@ -1,3 +1,10 @@
+/*-----------------------------------------------------------------------------
+ * @file test_routines.cpp
+ *
+ * Routine which reads all the parameters of the hardware. It is self-contained
+ * (does not use any external routine)
+ * --------------------------------------------------------------------------*/
+
 #include "/usr/include/uhd/usrp/multi_usrp.hpp"
 #include <cstdio>
 #include <iostream>

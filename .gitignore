@@ -1,3 +1,6 @@
 *.o
 *~
+clock_configuration
+e100test
+rxtest
 
