@@ -15,6 +15,9 @@
 
 
 
+samples2file:rx_samples_to_file.o
+	g++ -L /usr/lib -l uhd -o samples2file rx_samples_to_file.cpp
+
 e100test: test_routines.o
 	g++ -L /usr/lib -l uhd -o e100test test_routines.cpp
 
