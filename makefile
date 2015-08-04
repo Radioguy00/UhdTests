@@ -18,8 +18,8 @@
 samples2file:rx_samples_to_file.o
 	g++ -L /usr/lib -l uhd -o samples2file rx_samples_to_file.cpp
 
-e100test: test_routines.o
-	g++ -L /usr/lib -l uhd -o e100test test_routines.cpp
+device_test: test_routines.o
+	g++ -L /usr/lib -l uhd -o device_test test_routines.cpp
 
 setclock: clock_configuration.o
 	g++ -L /usr/lib -l uhd -o clock_configuration clock_configuration.cpp
