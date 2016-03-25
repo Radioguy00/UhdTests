@@ -173,7 +173,7 @@ void get_rx_specification(radio::multi_usrp::sptr usrp, size_t mboard)
 		cout << "Start: " << rx_fe_freq_range.start() << "   Stop: " << rx_fe_freq_range.stop() << "   Step: " << rx_fe_freq_range.step() << endl;
 		cout << rx_fe_freq_range.to_pp_string() << endl;
 	}
-		catch (uhd::runtime_error &e)
+		catch (uhd::exception &e)
 	{
 		cout << " Exception occurred : " << e.code() << endl;
 	}
@@ -190,7 +190,7 @@ void get_rx_specification(radio::multi_usrp::sptr usrp, size_t mboard)
 		double rx_total_gain = usrp->get_rx_gain(nchan);
 		cout << rx_total_gain << endl;
 	}
-	catch(uhd::runtime_error &e)
+	catch(uhd::exception &e)
 	{
 		cout << "Exception code: " << e.code() << endl;
 	}
@@ -214,7 +214,7 @@ void get_rx_specification(radio::multi_usrp::sptr usrp, size_t mboard)
 		double element_gain = usrp->get_rx_gain(rx_gain_names[index], nchan);
 		cout << element_gain << endl;
 		}
-		catch(uhd::runtime_error &e)
+		catch(uhd::exception &e)
 		{
 			cout << "Exception code while getting value: " << e.code() << endl;
 		}
@@ -232,7 +232,7 @@ void get_rx_specification(radio::multi_usrp::sptr usrp, size_t mboard)
 		uhd::gain_range_t element_gain_range = usrp->get_rx_gain_range(rx_gain_names[index], nchan);
 		cout << "Start: " << element_gain_range.start() << " End: " << element_gain_range.stop() << " Step: " << element_gain_range.step() << endl;
 		}
-		catch(uhd::runtime_error &e)
+		catch(uhd::exception &e)
 		{
 			cout << "Exception code while getting value: " << e.code() << endl;
 		}
@@ -246,7 +246,7 @@ void get_rx_specification(radio::multi_usrp::sptr usrp, size_t mboard)
 		cout << "RX Total Gain Range: " ;
 		cout << "Start: " << rx_total_gain_range.start() << " End: " << rx_total_gain_range.stop() << " Step: " << rx_total_gain_range.step() << endl;
 	}
-	catch(uhd::runtime_error &e)
+	catch(uhd::exception &e)
 	{
 		cout << "Exception code: " << e.code() <<endl;
 	}
@@ -279,7 +279,7 @@ void get_rx_specification(radio::multi_usrp::sptr usrp, size_t mboard)
 		double rx_bandwidth = usrp->get_rx_bandwidth(nchan);
 		cout << rx_bandwidth << endl;
 	}
-	catch (uhd::runtime_error &e)
+	catch (uhd::exception &e)
 	{
 		cout << "Exception occured " << e.code() << endl;
 	}
@@ -292,7 +292,7 @@ void get_rx_specification(radio::multi_usrp::sptr usrp, size_t mboard)
 		uhd::gain_range_t rx_bandwidth_range = usrp->get_rx_bandwidth_range(nchan);
 		cout << "Start: " << rx_bandwidth_range .start() << " End: " << rx_bandwidth_range .stop() << " Step: " << rx_bandwidth_range .step() << endl;
 	}
-	catch(uhd::runtime_error &e)
+	catch(uhd::exception &e)
 	{
 		cout << "Exception code: " << e.code() <<endl;
 	}
@@ -308,7 +308,7 @@ void get_rx_specification(radio::multi_usrp::sptr usrp, size_t mboard)
 		uhd::usrp::dboard_iface::sptr rx_dboard_iface = usrp->get_rx_dboard_iface(nchan);
 		cout << rx_dboard_iface << endl;
 	}
-	catch (uhd::runtime_error &e)
+	catch (uhd::exception &e)
 	{
 		cout << "Exception occured " << e.code() << endl;
 	}
@@ -331,7 +331,7 @@ void get_rx_specification(radio::multi_usrp::sptr usrp, size_t mboard)
 			uhd::sensor_value_t rx_sensor_value = usrp->get_rx_sensor(rx_sensor_names[index], nchan);
 			std::cout << rx_sensor_value.to_pp_string()<< std::endl;
 		}
-		catch(uhd::runtime_error &e)
+		catch(uhd::exception &e)
 		{
 			cout << "Exception occured " << e.code() << endl;
 		}
@@ -356,7 +356,7 @@ void get_tx_parameters(radio::multi_usrp::sptr usrp, size_t mboard)
 	radio::subdev_spec_t tx_subdev = usrp->get_tx_subdev_spec(mboard);
 	cout << tx_subdev.to_pp_string() << endl;
 	}
-	catch(uhd::runtime_error &e)
+	catch(uhd::exception &e)
 	{
 		cout << " Exception occurred : " << e.code() << endl;
 	}
@@ -369,7 +369,7 @@ void get_tx_parameters(radio::multi_usrp::sptr usrp, size_t mboard)
 	cout << "Number of TX channels: " ;
 	cout << num_tx << endl;
 	}
-	catch (uhd::runtime_error &e)
+	catch (uhd::exception &e)
 	{
 		cout << " Exception occurred : " << e.code() << endl;
 	}
@@ -382,7 +382,7 @@ void get_tx_parameters(radio::multi_usrp::sptr usrp, size_t mboard)
 	string tx_name = usrp->get_tx_subdev_name(nchan);
 	cout << tx_name << endl;
 	}
-	catch (uhd::runtime_error &e)
+	catch (uhd::exception &e)
 	{
 		cout << " Exception occurred : " << e.code() << endl;
 	}
@@ -399,7 +399,7 @@ void get_tx_parameters(radio::multi_usrp::sptr usrp, size_t mboard)
 		double tx_rate = usrp->get_tx_rate(nchan);
 		cout << tx_rate << endl;
 	}
-	catch (uhd::runtime_error &e)
+	catch (uhd::exception &e)
 	{
 		cout << " Exception occurred : " << e.code() << endl;
 	}
@@ -413,7 +413,7 @@ void get_tx_parameters(radio::multi_usrp::sptr usrp, size_t mboard)
 		cout << "Start: " << tx_rates.start() << "   Stop: " << tx_rates.stop() << "   Step: " << tx_rates.step() << endl;
 		cout << tx_rates.to_pp_string() << endl;
 	}
-	catch (uhd::runtime_error &e)
+	catch (uhd::exception &e)
 	{
 		cout << " Exception occurred : " << e.code() << endl;
 	}
@@ -430,7 +430,7 @@ void get_tx_parameters(radio::multi_usrp::sptr usrp, size_t mboard)
 		double tx_freq = usrp->get_tx_freq(nchan);
 		cout << tx_freq << endl;
 	}
-	catch (uhd::runtime_error &e)
+	catch (uhd::exception &e)
 	{
 		cout << " Exception occurred : " << e.code() << endl;
 	}
@@ -444,7 +444,7 @@ void get_tx_parameters(radio::multi_usrp::sptr usrp, size_t mboard)
 		cout << "Start: " << tx_freq_range.start() << "   Stop: " << tx_freq_range.stop() << "   Step: " << tx_freq_range.step() << endl;
 		cout << tx_freq_range.to_pp_string() << endl;
 	}
-	catch (uhd::runtime_error &e)
+	catch (uhd::exception &e)
 	{
 		cout << " Exception occurred : " << e.code() << endl;
 	}
@@ -458,7 +458,7 @@ void get_tx_parameters(radio::multi_usrp::sptr usrp, size_t mboard)
 		cout << "Start: " << tx_fe_freq_range.start() << "   Stop: " << tx_fe_freq_range.stop() << "   Step: " << tx_fe_freq_range.step() << endl;
 		cout << tx_fe_freq_range.to_pp_string() << endl;
 	}
-	catch (uhd::runtime_error &e)
+	catch (uhd::exception &e)
 	{
 		cout << " Exception occurred : " << e.code() << endl;
 	}
@@ -475,7 +475,7 @@ void get_tx_parameters(radio::multi_usrp::sptr usrp, size_t mboard)
 		double tx_total_gain = usrp->get_tx_gain(nchan);
 		cout << tx_total_gain << endl;
 	}
-	catch(uhd::runtime_error &e)
+	catch(uhd::exception &e)
 	{
 		cout << "Exception code: " << e.code() << endl;
 	}
@@ -499,7 +499,7 @@ void get_tx_parameters(radio::multi_usrp::sptr usrp, size_t mboard)
 		double element_gain = usrp->get_tx_gain(tx_gain_names[index], nchan);
 		cout << element_gain << endl;
 		}
-		catch(uhd::runtime_error &e)
+		catch(uhd::exception &e)
 		{
 			cout << "Exception code while getting value: " << e.code() << endl;
 		}
@@ -517,7 +517,7 @@ void get_tx_parameters(radio::multi_usrp::sptr usrp, size_t mboard)
 		uhd::gain_range_t element_gain_range = usrp->get_tx_gain_range(tx_gain_names[index], nchan);
 		cout << "Start: " << element_gain_range.start() << " End: " << element_gain_range.stop() << " Step: " << element_gain_range.step() << endl;
 		}
-		catch(uhd::runtime_error &e)
+		catch(uhd::exception &e)
 		{
 			cout << "Exception code while getting value: " << e.code() << endl;
 		}
@@ -531,7 +531,7 @@ void get_tx_parameters(radio::multi_usrp::sptr usrp, size_t mboard)
 		cout << "TX Total Gain Range: " ;
 		cout << "Start: " << tx_total_gain_range.start() << " End: " << tx_total_gain_range.stop() << " Step: " << tx_total_gain_range.step() << endl;
 	}
-	catch(uhd::runtime_error &e)
+	catch(uhd::exception &e)
 	{
 		cout << "Exception code: " << e.code() <<endl;
 	}
@@ -547,7 +547,7 @@ void get_tx_parameters(radio::multi_usrp::sptr usrp, size_t mboard)
 	string tx_antenna = usrp->get_tx_antenna(nchan);
 	cout << tx_antenna << endl;
 	}
-	catch(uhd::runtime_error &e)
+	catch(uhd::exception &e)
 	{
 		cout << "Exception code: " << e.code() <<endl;
 	}
@@ -561,7 +561,7 @@ void get_tx_parameters(radio::multi_usrp::sptr usrp, size_t mboard)
 	for (int index =0; index < tx_antennas.size(); index++)
 		std::cout << "\t" << tx_antennas[index] << std::endl;
 	}
-	catch(uhd::runtime_error &e)
+	catch(uhd::exception &e)
 	{
 		cout << "Exception code: " << e.code() <<endl;
 	}
@@ -577,7 +577,7 @@ void get_tx_parameters(radio::multi_usrp::sptr usrp, size_t mboard)
 		double tx_bandwidth = usrp->get_tx_bandwidth(nchan);
 		cout << tx_bandwidth << endl;
 	}
-	catch (uhd::runtime_error &e)
+	catch (uhd::exception &e)
 	{
 		cout << "Exception occured " << e.code() << endl;
 	}
@@ -590,7 +590,7 @@ void get_tx_parameters(radio::multi_usrp::sptr usrp, size_t mboard)
 		uhd::gain_range_t tx_bandwidth_range = usrp->get_tx_bandwidth_range(nchan);
 		cout << "Start: " << tx_bandwidth_range .start() << " End: " << tx_bandwidth_range .stop() << " Step: " << tx_bandwidth_range .step() << endl;
 	}
-	catch(uhd::runtime_error &e)
+	catch(uhd::exception &e)
 	{
 		cout << "Exception code: " << e.code() <<endl;
 	}
@@ -606,7 +606,7 @@ void get_tx_parameters(radio::multi_usrp::sptr usrp, size_t mboard)
 		uhd::usrp::dboard_iface::sptr tx_dboard_iface = usrp->get_tx_dboard_iface(nchan);
 		cout << tx_dboard_iface << endl;
 	}
-	catch (uhd::runtime_error &e)
+	catch (uhd::exception &e)
 	{
 		cout << "Exception occured " << e.code() << endl;
 	}
@@ -629,7 +629,7 @@ void get_tx_parameters(radio::multi_usrp::sptr usrp, size_t mboard)
 			uhd::sensor_value_t tx_sensor_value = usrp->get_tx_sensor(tx_sensor_names[index], nchan);
 			std::cout << tx_sensor_value.to_pp_string()<< std::endl;
 		}
-		catch(uhd::runtime_error &e)
+		catch(uhd::exception &e)
 		{
 			cout << "Exception occured " << e.code() << endl;
 		}
@@ -666,7 +666,7 @@ void get_gpio(radio::multi_usrp::sptr usrp, size_t mboard)
 				boost::uint32_t attribute =	usrp->get_gpio_attr(gpio_bank_list[index],attr_list[aindex], mboard);
 				std::cout << attribute << std::endl;
 			}
-			catch(uhd::runtime_error &e)
+			catch(uhd::exception &e)
 			{
 				cout << "Exception occured " << e.code() << endl;
 			}
